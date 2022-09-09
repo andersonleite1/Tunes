@@ -11,14 +11,16 @@ import NotFound from './pages/NotFound';
 export default function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={ <Login /> } />
-        <Route path="/search" element={ <Search /> } />
-        <Route path="/album:id" element={ <Album /> } />
-        <Route path="/favorites" element={ <Favorites /> } />
-        <Route path="/profile" element={ <Profile /> } />
-        <Route path="/*" element={ <NotFound /> } />
-      </Routes>
+      <React.StrictMode>
+        <Routes>
+          <Route path="/" element={ <Login /> } />
+          <Route path="/search" element={ <Search /> } />
+          <Route path="/album:id" element={ <Album /> } />
+          <Route path="/favorites" element={ <Favorites /> } />
+          <Route path="/profile" element={ <Profile /> } />
+          <Route path="/*" element={ <NotFound /> } />
+        </Routes>
+      </React.StrictMode>
     </div>
 
   );
