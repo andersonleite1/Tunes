@@ -1,10 +1,17 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import styled from 'styled-components';
+import Header from '../components/Header';
+
+const Div = styled.div`
+    background-color: #fafafa;
+    width: 100vw;
+    height: 100vh;
+  `;
 
 export default function ProfileEdit() {
   return (
-    <Container data-testid="page-profile-edit">
-      <h1>Profile Edit</h1>
-    </Container>
+    <Div>
+      <Header />
+    </Div>
   );
 }

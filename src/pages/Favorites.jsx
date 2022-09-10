@@ -1,10 +1,17 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import styled from 'styled-components';
+import Header from '../components/Header';
+
+const Div = styled.div`
+    background-color: #fafafa;
+    width: 100vw;
+    height: 100vh;
+  `;
 
 export default function Favorites() {
   return (
-    <Container data-testid="page-favorites">
-      <h1>Favorites</h1>
-    </Container>
+    <Div>
+      <Header />
+    </Div>
   );
 }
