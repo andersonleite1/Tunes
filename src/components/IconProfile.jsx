@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 
 import styled from 'styled-components';
@@ -11,6 +12,7 @@ const Section = styled.section`
   height: 2.3rem;
   background-color: white;
   border-radius: 5rem;
+  cursor: pointer;
 `;
 
 const Avatar = styled.img`
@@ -26,8 +28,10 @@ const Name = styled.span`
 `;
 
 export default function IconProfile({ avatar, username }) {
+  const navigate = useNavigate();
+
   return (
-    <Section>
+    <Section onClick={ () => navigate('/profile') }>
       <Avatar src={ !avatar ? icon : avatar } alt="Avatar" />
       <Name>{ username }</Name>
     </Section>
