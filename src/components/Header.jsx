@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-max-depth */
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
@@ -7,6 +8,7 @@ import { getUser } from '../services/userAPI';
 import logo from '../images/logo-white.png';
 import IconProfile from './IconProfile';
 import Loading from './Loading';
+import Menu from './Menu';
 
 const HeaderTop = styled.header`
   width: 100vw;
@@ -42,20 +44,22 @@ export default function Header() {
   }, []);
 
   const data = () => (
-    <HeaderTop>
-      <Container>
-        <Row>
-          <Col xs lg="2">
-            <Image src={ logo } alt="Logo Trybe Tunes" />
-          </Col>
-          <Col xs lg="8" />
-          <Col xs lg="2" style={ iconProfileStyle }>
-            <IconProfile username={ username } avatar={ avatar } />
-          </Col>
-        </Row>
-      </Container>
-    </HeaderTop>);
-
+    <>
+      <HeaderTop>
+        <Container>
+          <Row>
+            <Col xs lg="2">
+              <Image src={ logo } alt="Logo Trybe Tunes" />
+            </Col>
+            <Col xs lg="8" />
+            <Col xs lg="2" style={ iconProfileStyle }>
+              <IconProfile username={ username } avatar={ avatar } />
+            </Col>
+          </Row>
+        </Container>
+      </HeaderTop>
+      <Menu />
+    </>);
   return (
     <div>
       { isLoading ? <Loading /> : data() }
