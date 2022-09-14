@@ -16,7 +16,10 @@ const Section = styled.section`
 `;
 
 const Avatar = styled.img`
-  width: 2.3rem;
+  width: 2rem;
+  margin-top: 0.2rem;
+  margin-left: 0.2rem;
+  height: 2rem;
   max-width: 100%;
   border-radius: 50%;
 `;
