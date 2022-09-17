@@ -4,13 +4,16 @@ import styled from 'styled-components';
 import AlbumNotFound from '../components/AlbumNotFound';
 import CardAlbum from '../components/CardAlbum';
 import Header from '../components/Header';
-import Loading from '../components/Loading';
+import LoadingCycle from '../components/LoadingCycle';
+import LoadingMusic from '../components/LoadingMusic';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import simulateNetworkRequest from '../services/simulateRequest';
 
 const Div = styled.div`
     background-color: #fafafa;
     width: 100vw;
     height: 100vh;
+    overflow-x: hidden;
   `;
 
 const ContainerForm = styled.form`
@@ -25,16 +28,17 @@ const buttonStyle = { marginBottom: '1rem', marginLeft: '1rem' };
 export default function Search() {
   const [artistName, setArtistName] = useState('');
   const [albums, setAlbums] = useState([]);
-  const [isLoading, setLoading] = useState(false);
-  const [isShow, setShow] = useState(false);
+  const [isLoading, setLoading] = useState(true);
+  const [isSearching, setSearching] = useState(false);
 
   const isNameValid = (name) => name.length > 1;
 
   const handleClick = async () => {
-    setLoading(true);
+    setAlbums([]);
+    setSearching(true);
     const data = await searchAlbumsAPI(artistName);
     setAlbums(data);
-    setLoading(false);
+    setSearching(false);
     setArtistName('');
   };
 
@@ -46,55 +50,61 @@ export default function Search() {
   };
 
   useEffect(() => {
-    setShow(true);
-  }, [isShow]);
+    if (isLoading) {
+      simulateNetworkRequest().then(() => {
+        setLoading(false);
+      });
+    }
+  }, [isLoading]);
 
   return (
     <Div data-testid="page-search">
       <Header />
-      <Container>
-        <ContainerForm>
-          <Form.Group className="mb-3" controlId="formArtistName">
-            <Form.Control
-              type="text"
-              placeholder="Nome do Artista"
-              value={ artistName }
-              onKeyDown={ handleKeyDown }
-              onChange={ ({ target }) => setArtistName(target.value) }
-            />
-          </Form.Group>
-          <Button
-            variant="primary"
-            type="button"
-            style={ buttonStyle }
-            disabled={ !isNameValid(artistName) }
-            onClick={ handleClick }
-          >
-            Procurar
-          </Button>
-        </ContainerForm>
-        { isLoading && <Loading /> }
-        { !albums.length && !isLoading && <AlbumNotFound /> }
-        <Row
-          xs={ 1 }
-          md={ 3 }
-          className="g-4"
-          style={ { marginTop: '2rem' } }
-        >
-          {
-            albums.map((album) => (
-              albums.length && <CardAlbum
-                key={ album.collectionId }
-                image={ album.artworkUrl100 }
-                title={ album.collectionName }
-                artist={ album.artistName }
-                releaseDate={ album.releaseDate }
-                id={ album.collectionId }
+      { isLoading ? <LoadingCycle /> : (
+        <Container>
+          <ContainerForm>
+            <Form.Group className="mb-3" controlId="formArtistName">
+              <Form.Control
+                type="text"
+                placeholder="Nome do Artista"
+                value={ artistName }
+                onKeyDown={ handleKeyDown }
+                onChange={ ({ target }) => setArtistName(target.value) }
               />
-            ))
-          }
-        </Row>
-      </Container>
+            </Form.Group>
+            <Button
+              variant="primary"
+              type="button"
+              style={ buttonStyle }
+              disabled={ !isNameValid(artistName) }
+              onClick={ handleClick }
+            >
+              Procurar
+            </Button>
+          </ContainerForm>
+          { isSearching && <LoadingMusic /> }
+          { !albums.length && !isSearching && <AlbumNotFound /> }
+          <Row
+            xs={ 1 }
+            md={ 3 }
+            className="g-4"
+            style={ { marginTop: '2rem' } }
+          >
+            {
+              albums.map((album) => (
+                albums.length && <CardAlbum
+                  key={ album.collectionId }
+                  image={ album.artworkUrl100 }
+                  title={ album.collectionName }
+                  artist={ album.artistName }
+                  releaseDate={ album.releaseDate }
+                  id={ album.collectionId }
+                />
+              ))
+            }
+          </Row>
+        </Container>
+      )}
     </Div>
   );
 }
