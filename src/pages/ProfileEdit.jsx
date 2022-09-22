@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { Button, Stack } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -54,7 +54,9 @@ export default function ProfileEdit() {
 
   const navigate = useNavigate();
 
-  const handleUpdateUser = async () => updateUser({ name, email, image, description });
+  const handleUpdateUser = useCallback(async () => {
+    updateUser({ name, email, image, description });
+  }, [name, email, image, description]);
 
   const handleClick = () => setSaving(true);
 
@@ -65,7 +67,7 @@ export default function ProfileEdit() {
         return navigate('/profile');
       });
     }
-  }, [isSaving]);
+  }, [isSaving, handleUpdateUser, navigate]);
 
   useEffect(() => {
     if (isLoading) {
