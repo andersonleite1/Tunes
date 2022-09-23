@@ -16,6 +16,8 @@ Esse foi um dos projetos que realizei na [Trybe](https://www.betrybe.com/), nele
 
 ## Resultado
 
+![Find Tunes](https://github.com/andersonleite1/Tunes/blob/main/src/images/findtunes.gif?raw=true)
+
 ## Tecnologias utilizadas no desenvolvimento:
 
 `reactjs`, `react-dom`, `react-router-dom-v6`, `bootstrap-5`, `react-bootstrap`, `styled-components`,
