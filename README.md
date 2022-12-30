@@ -124,3 +124,8 @@ npm start
 
 [find-tunes.vercel.app](https://find-tunes.vercel.app/)
 
+<h4 align="right">
+  <a href="https://www.linkedin.com/in/andersonleitedev/">
+    <img src="https://i.ibb.co/vHJWtxz/andersonleite.png" alt="andersonleite" border="0" width="250px">
+  </a>
+</h4>
