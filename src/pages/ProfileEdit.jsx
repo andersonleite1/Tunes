@@ -23,11 +23,23 @@ const Section = styled.section`
   display: table;
   margin: auto;
   margin-top: 5rem;
+
+  @media (max-width: 768px) {
+    margin-top: 2rem;
+  }
 `;
 
 const BoxInline = styled.div`
   display: flex;
-  align-items: end;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    img {
+      width: 4.5rem;
+      height: 4.5rem;
+    }
+  }
 `;
 
 const Input = styled.input`
@@ -38,6 +50,15 @@ const Input = styled.input`
   height: 2.7rem;
   font-size: 0.9rem;
   border: 1px solid #c4c4c4;
+
+  &:focus {
+    outline: none;
+    border: 1px solid #007bff;
+  }
+  
+  @media (max-width: 768px) {
+    width: 15rem;
+  }
 `;
 
 const StyledButton = styled(Button)`

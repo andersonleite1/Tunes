@@ -15,6 +15,11 @@ const Image = styled.img`
   width: 15vw;
   border-radius: 10px;
   padding-right: 1rem;
+
+  @media (max-width: 768px) {
+    width: 30vw;
+    margin: 0 auto;
+  }
 `;
 
 const AlbumName = styled.h2`
@@ -76,7 +81,7 @@ export default function Album() {
   return (
     <Div>
       <Header />
-      <Container style={ { marginTop: '7rem' } }>
+      <Container>
         { isShow && musicsAlbum(musics) }
       </Container>
     </Div>

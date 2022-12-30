@@ -6,6 +6,10 @@ const Header = styled.h4`
   font-size: 1.3rem;
   color: #3d495c;
   margin-top: 1.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const Span = styled.span`

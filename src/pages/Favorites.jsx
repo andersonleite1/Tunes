@@ -20,6 +20,10 @@ const Title = styled.h3`
   font-weight: 300;
   letter-spacing: 1px;
   margin: 7rem 0 2.3rem 0;
+
+  @media (max-width: 768px) {
+    margin: 2rem 0 2.3rem 0;
+  }
 `;
 
 export default function Favorites() {

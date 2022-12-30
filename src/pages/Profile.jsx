@@ -23,6 +23,10 @@ const Section = styled.section`
   display: table;
   margin: auto;
   margin-top: 5rem;
+
+  @media (max-width: 768px) {
+    margin-top: 2rem;
+  }
 `;
 
 const BoxInline = styled.div`
