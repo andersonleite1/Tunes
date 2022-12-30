@@ -122,5 +122,5 @@ npm start
 
 ![Find Tunes](src/images/findtunes.gif)
 
-[https://findtunes.herokuapp.com/](https://findtunes.herokuapp.com/)
+[find-tunes.vercel.app](https://find-tunes.vercel.app/)
 
